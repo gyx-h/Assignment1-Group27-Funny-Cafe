@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- viewport responsive settings:width follows the device width,initial-scale is set to 1,standard for mobile adaptation -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title displayed on the browser tab (Group 27 after the vertical bar is the team name) -->
+    <title>Funny Cafe | Group 27</title>
+    <!-- External stylesheet:All CSS rules for this page are written in css/style.css,achieving separation of structure and style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Accessibility 'Skip to main content' link:hidden visually by default,appears when keyboard users press Tab,and can be used to jump directly to the main content,skipping repetitive navigation -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <!-- Header/Navigation Bar Area (id=mainNav for js/main.js to capture for sticky and scroll effects) -->
+    <header id="mainNav">
+        <!-- Outer container for the navigation content,used to limit width and center horizontally -->
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <!-- alt is the text displayed as a substitute when the image fails to load or for screen readers -->
+                <img src="images/logo.png" alt="Funny Cafe Logo">
+                Funny Cafe
+            </a>
+            <nav aria-label="Main navigation">
+            <!-- Hamburger button: the toggle for collapsible menus on mobile -->
+            <!-- aria-label explains the purpose -->
+            <!-- aria-expanded indicates the current expanded state (false=collapsed,toggled by JS) -->
+            <!-- aria-controls links to the id of the menu being controlled -->
+            <button class="hamburger" id="menuBtn" aria-label="Open the menu" aria-expanded="false" aria-controls="navList">☰</button>
+            <ul id="navList">
+                <!-- The aria-current="page" attribute marks 'this item is the current page' -->
+                <li><a href="index.html" aria-current="page">Home</a></li>
+                <!-- has-dropdown:menu item with a second-level dropdown (menu page) -->
+                <li class="has-dropdown">
+                    <a href="menu.html">Menu ▾</a>
+                    <!-- dropdown:dropdown submenu,use links like "page#anchor" to jump to the corresponding section in menu.html -->
+                    <ul class="dropdown">
+                        <li><a href="menu.html#coffee">Coffee</a></li><!-- Jump to the section with id=coffee on the menu page -->
+                        <li><a href="menu.html#tea">Tea & Cold Drinks</a></li>
+                        <li><a href="menu.html#food">Food</a></li>
+                        <li><a href="menu.html#seasonal">Seasonal</a></li>
+                    </ul>
+                </li>
+                <!-- Photo section navigation item:same structure,submenu items point to the three anchor sections of photo.html -->
+                <li class="has-dropdown">
+                    <a href="photo.html">Photo Corner ▾</a>
+                    <ul class="dropdown">
+                        <li><a href="photo.html#thisMonth">This Month</a></li>
+                        <li><a href="photo.html#upcoming">Upcoming Themes</a></li>
+                        <li><a href="photo.html#gallery">Gallery</a></li>
+                    </ul>
+                </li>
+                <!-- In-store and reservation navigation items:the submenu points to reserve.html for three sections:location/reservation/navigation -->
+                <li class="has-dropdown">
+                    <a href="reserve.html">Visit & Reserve ▾</a>
+                    <ul class="dropdown">
+                        <li><a href="reserve.html#location">Location & Hours</a></li>
+                        <li><a href="reserve.html#seat">Reserve a Seat</a></li>
+                        <li><a href="reserve.html#findUs">Find Us</a></li>
+                    </ul>
+                </li>
+                <!-- Jump straight to the homepage internal anchors (member/contact),not a separate page -->
+                <li><a href="index.html#rewards">Rewards</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+    <!-- Back to top button:click to scroll back to the top of the page,visibility and click logic are controlled by js/main.js -->
+    <button id="backTopBtn">↑</button>
+    <!-- Main content of the page (the ID corresponds to the top skip-link,serving as the landing point for 'Skip to main content') -->
+    <main id="main-content">
+        <!-- Homepage Hero Image Section -->
+        <section id="home">
+            <!-- hero-bg:used as a full-width background image laid at the very bottom -->
+            <img src="images/main.jpg" alt="Funny Cafe" class="hero-bg">
+            <!-- hero-content:the text layer (title/subtitle/button) overlaid on the main image -->
+            <div class="hero-content">
+                <h1>Funny Cafe</h1>
+                <p>Enjoy your coffee time & photo space | Group 27 Project</p>
+                <a href="menu.html" class="btn">Browse Menu</a>
+            </div>
+            <div class="hero-fade"></div>
+        </section>
+
+        <!-- Hook Section:Coffee & Desserts+Photo Area (Highlight the selling points with two cards to attract users to check out the menu/album) -->
+        <section id="highlights">
+            <div class="highlights-grid">   <!-- grid container:two-column grid layout -->
+                <!-- Highlight Card 1:Coffee Desserts -->
+                <div class="highlight-card">
+                    <img src="images/Latte.png" alt="Premium Coffee and Desserts">
+                    <!-- Card text content layer:title,description, button -->
+                    <div class="highlight-content">
+                        <h3>Premium Coffee & Desserts</h3>
+                        <p>Freshly roasted specialty beans and handmade pastries, crafted to perfection every day.</p>
+                        <a href="menu.html" class="btn btn-sm">View Menu</a>
+                    </div>
+                </div>
+                <!-- Highlight Card 2:Photo Angle -->
+                <div class="highlight-card">
+                    <img src="images/four_customers_photo.jpeg" alt="Themed Photo Corner">
+                    <div class="highlight-content">
+                        <h3>Exclusive Photo Corner</h3>
+                        <p>New themed backdrops every month. The perfect spot to capture your memories.</p>
+                        <a href="photo.html" class="btn btn-sm">Explore Themes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us -->
+        <section id="about">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <h3>More Than Just Coffee, Your Exclusive Photo Studio</h3>
+                <p>Located in the Creative District, Funny Cafe serves carefully roasted specialty coffee and handmade desserts. More than just a cafe, we are dedicated to creating a social space filled with retro and contrasting aesthetics.</p>
+                <p>Every month, we meticulously set up different themed photo corners. From warm autumn days to winter Christmas, we invite you to capture beautiful moments while enjoying delicious treats.</p>
+                <!-- about-highlights:Use a set of tags to summarize the store's features (specialty hand-brewed/monthly themes/handmade baking) -->
+                <div class="about-highlights">
+                    <span>Specialty Brews</span>
+                    <span>Monthly Themes</span>
+                    <span>Handmade Bakes</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rewards -->
+        <section id="rewards">
+            <h2 class="section-title">Rewards</h2>
+            <div class="reward-cards">
+                <div class="reward-card">
+                    <h3>Basic Member</h3>
+                    <p>Earn points per purchase. 1 point / $1 spent. 15% off drinks on birthday.</p>
+                </div>
+                <div class="reward-card">
+                    <h3>Silver Member</h3>
+                    <p>10% off all items. Monthly dessert coupon. Priority booking for photo seats.</p>
+                </div>
+                <div class="reward-card">
+                    <h3>Gold Member</h3>
+                    <p>20% off all items. Free drink upgrade. Early access to new photo themes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <!-- Two columns:contact info on the left,message form on the right -->
+            <div class="contact-wrap">
+                <div class="contact-info">
+                    <p>📞 Phone: 031-1234567</p>
+                    <p>✉️ Email: contact@funnycafe.com</p>
+                    <p>💬 WeChat: Funny Cafe Official</p>
+                    <p>📱 Social Media: Instagram / TikTok @FunnyCafe</p>
+                </div>
+                <div>
+                    <!-- Message form:data-demo-form is a custom data-* attribute for JS to recognize this as a demo form (only shows a front-end tip on submission,doesn't actually send) -->
+                    <form class="order-form" data-demo-form>
+                        <!-- For each form item:the label is linked to the corresponding input's id using 'for',so clicking the text will focus the input,which is also helpful for screen readers -->
+                        <div class="form-item">
+                            <label for="contactName">Your Name</label>
+                            <input id="contactName" name="contactName" type="text" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="contactEmail">Email</label>
+                            <input id="contactEmail" name="contactEmail" type="email" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" name="contactMessage" rows="4" required></textarea>
+                        </div>
+                        <!-- type="submit" submit button:clicking it will trigger the form's submit event -->
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Funny Cafe | Group 27 Web Project | Last updated: 2026-10-17</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

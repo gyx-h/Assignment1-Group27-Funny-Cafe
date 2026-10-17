@@ -1,0 +1,834 @@
+/* Define site-wide CSS variables(the theme color palette)inside the:root selector.
+  * These custom properties(--bg,--primary,--accent,...)are reused everywhere with var(),
+  * so changing one value here updates the whole website-the core"define once,reuse many" idea */
+:root{     /*Site-wide theme color palette*/
+    --bg:#FBF3E4;              
+    --surface:#FFFFFF;        
+    --surface-alt: #F5EDE0;     
+    --text: #3B2A1E;           
+    --text-muted: #7A6A5C;      
+    --nav-bg: #6B4226;          
+    --primary: #7D9B76;         
+    --primary-dark: #5F7D58;    
+    --accent: #E8B84B;          
+    --accent-soft: #F5E4B8;     
+    --border: #E0D5C5;          
+    --shadow: rgba(59, 42, 30, 0.08);
+    --shadow-hover: rgba(59, 42, 30, 0.16);
+}
+/* CSS Reset:remove the default margin/padding every browser adds,switch to the border-box
+  * sizing model(so padding is counted INSIDE an element width/height),and set one global font stack */
+*{     /* Global reset (CSS Reset) to ensure consistency across browsers */
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+}
+/* Make in-page anchor links(like #coffee,#seat)scroll smoothly instead of snapping instantly */
+html{scroll-behavior:smooth;}   /* Smooth scrolling for in-page anchor jumps(like #coffee),instead of jumping instantly */
+/* Body:pull the default background/text colors from the variables,use a readable line-height,
+  * and keep at least one full viewport tall(min-height:100vh)so short pages still fill the screen */
+body{
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    min-height:100vh;
+}
+
+/* Jump link */
+/* Accessibility("Skip to content" link):hidden off-screen with left:-9999px by default,and slid
+  * back into view(see .skip-link:focus)when a keyboard user tabs to it,letting them jump straight
+  * to the main content instead of tabbing through the whole menu first.z-index keeps it on top */
+.skip-link{
+    position:absolute;
+    left:-9999px;
+    top:0;
+    background:var(--text);
+    color:var(--bg);
+    padding:0.8rem 1rem;
+    z-index:9999;      /* Highest level,floats on top */
+    border-radius:0 0 8px 0;
+}
+.skip-link:focus{left:0;}
+
+/* Navigation bar */
+/* Header/navbar:dark-brown background;position:sticky+top:0 makes it "stick" to the top while
+  * you scroll;the high z-index makes sure it stays above the page content */
+header{
+    background:var(--nav-bg);
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 20px rgba(59, 42, 30, 0.2);
+}
+
+/* Nav wrapper:cap the width(max-width)and center it with auto margins,then use flexbox to push
+  * the logo to the left and the menu to the right(justify-content:space-between) */
+.nav-container{
+    max-width:1400px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 2rem;
+    position:relative;
+}
+
+/* Logo text:cream color,bold,no underline;display:flex+gap lay the logo image and the wordmark
+  * neatly side by side */
+.logo{
+    color: #FBF3E4;
+    font-size:1.8rem;
+    font-weight:700;
+    padding:1rem 0;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:12px; 
+    letter-spacing:0.5px;
+}
+
+/* Logo Image Style */
+/* Logo image:fixed 48x48 box,object-fit:cover so it is not stretched,border-radius:50% turns it
+  * into a circle,plus a thin gold border */
+.logo img{ 
+    height:48px; 
+    width:48px; 
+    object-fit:cover;
+    border-radius:50%; 
+    border:2px solid var(--accent); 
+}
+
+/* Main menu:flex lays the items out in a horizontal row;list-style:none removes the bullet dots */
+nav ul{display:flex;list-style:none;align-items:center;}
+/* Each menu item is position:relative,which lets its nested dropdown be positioned relative to it */
+nav li{position:relative;}
+
+/* Unify the font size of the entire site's navigation bar */
+/* All nav links:display:block so the whole padded area is clickable,a short transition animates
+  * hover changes,and a small font-size keeps every link uniform */
+nav a{
+    display:block;
+    color: #FBF3E4;
+    text-decoration:none;
+    padding:1.2rem 1rem;
+    font-weight:500;
+    transition:all 0.25s ease;
+    border-radius:6px;
+    font-size:1rem; 
+}
+
+/* Hover/keyboard-focus feedback for a nav link:green fill and white text */
+nav a:hover,
+nav a:focus{
+    background:var(--primary);
+    color: #fff;
+}
+
+/* Dropdown submenu:absolutely positioned directly under its parent item(top:100%,left:0),hidden
+  * by default(display:none)until triggered; rounded bottom corners and a drop shadow */
+nav .dropdown{
+    position:absolute;
+    background:var(--nav-bg);
+    min-width:220px;
+    display:none;
+    top:100%;
+    left:0;
+    border:1px solid var(--primary);
+    border-top:none;
+    border-radius:0 0 10px 10px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+nav .dropdown li{width:100%;}
+
+/* Reveal the dropdown in three situations:on mouse hover, when a child inside is focused
+  * (:focus-within,good for keyboard users),or when JS adds the .open class (used on mobile) */
+.has-dropdown:hover>.dropdown,
+.has-dropdown:focus-within>.dropdown,
+.has-dropdown.open>.dropdown{display:block;}
+
+/* Hamburger button(the hamburger icon):display:none on desktop, only shown on small screens by the
+  * media query at the bottom;transparent background so only the icon is visible */
+.hamburger{
+    display:none;
+    color: #FBF3E4;
+    font-size:2rem;
+    cursor:pointer;
+    position:relative;
+    z-index:10;
+    background:transparent;
+    border:none;
+}
+
+/* Back-to-top button:fixed to the bottom-right corner,circular;hidden by default(display:none)
+  * and revealed by JavaScript only after the user has scrolled down far enough */
+#backTopBtn{
+    position:fixed;
+    bottom:30px;
+    right:30px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:var(--primary);
+    color: #fff;
+    border:none;
+    font-size:1.3rem;
+    cursor:pointer;
+    display:none;
+    z-index:999;
+    box-shadow:0 6px 18px rgba(125, 155, 118, 0.4);
+    transition:all 0.3s ease;
+}
+
+/* Hover/focus feedback:switch color and lift the button slightly(translateY) */
+#backTopBtn:hover,
+#backTopBtn:focus{
+    background:var(--nav-bg);
+    transform:translateY(-3px);
+    box-shadow:0 10px 24px rgba(107, 66, 38, 0.45);
+}
+
+/* General Blocks and Titles */
+/* Generic <section> rule:cap the width,center it,add generous top/bottom padding
+  * (The hero #home below deliberately overrides most of these values.) */
+section{max-width:1400px;margin:0 auto;padding:5rem 2rem;}
+
+/* Standard centered section heading;the gold bar under it is drawn with the ::after pseudo-element */
+.section-title{
+    font-size:2.2rem;
+    color:var(--text);
+    margin-bottom:2rem;
+    text-align:center;
+    position:relative;
+    font-weight:700;
+}
+
+/* The short decorative gold bar under each title,made with a pseudo-element instead of an extra tag */
+.section-title::after{
+    content:'';
+    display:block;
+    width:70px;
+    height:5px;
+    background:var(--accent);
+    margin:12px auto 0;
+    border-radius:3px;
+}
+
+/* Primary button style:pill shape(large border-radius),green fill,and a shadow for depth */
+.btn{
+    display:inline-block;
+    padding:1rem 2.2rem;        
+    background:var(--primary);
+    color: #fff;
+    text-decoration:none;
+    border-radius:30px;
+    border:2px solid var(--primary);
+    cursor:pointer;
+    font-size:1.15rem;          
+    font-weight:600;
+    transition:all 0.3s ease;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(125, 155, 118, 0.3);
+}
+
+/* Hover/focus state of the primary button:darken the color and lift the button a little */
+.btn:hover,
+.btn:focus{
+    background:var(--primary-dark);
+    border-color:var(--primary-dark);
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(125, 155, 118, 0.4);
+}
+
+/* Compact button variant used inside cards(smaller padding/font,no shadow) */
+.btn-sm{
+    padding:6px 16px;
+    font-size:13px;
+    margin-top:8px;
+    border-radius:20px;
+    box-shadow:none;
+}
+
+/* Homepage top section */
+/* Hero section on top of the home page:almost full-viewport tall(88vh),full width,and it uses
+  * flex to center its content both vertically and horizontally */
+#home{
+    position:relative;
+    height:88vh;
+    max-width:none;
+    width:100%;
+    margin:0;
+    padding:0;
+    overflow:hidden; 
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+/* Hero background image:stretched to fill the section(object-fit:cover)and pushed to the back
+  * layer with z-index:0 */
+#home .hero-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+}
+
+/* Hero text layer sits above the background image(higher z-index)and stacks its children vertically */
+#home .hero-content{
+    position:relative;
+    z-index:2;
+    color: #FBF3E4;
+    padding:0 2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* Big hero title:a strong text-shadow keeps it legible over the photo */
+#home h1{
+    font-size:4rem;
+    margin-bottom:1rem;
+    letter-spacing:2px;
+    text-shadow:2px 4px 12px rgba(0,0,0,0.8),0 2px 6px rgba(0,0,0,0.6);
+    font-weight:800;
+}
+
+/* Hero subtitle text under the title */
+#home p{
+    font-size:1.3rem;
+    max-width:600px;
+    margin:0 auto 2.5rem;
+    text-shadow:1px 2px 8px rgba(0,0,0,0.8),0 1px 4px rgba(0,0,0,0.6);
+}
+
+/* Bottom gradient fade(transparent to the page background)that blends the hero image into the next
+  * section;pointer-events:none so this overlay never blocks clicks underneath */
+#home .hero-fade{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:150px;
+    background:linear-gradient(to bottom,transparent,var(--bg));
+    z-index:1;
+    pointer-events:none;
+}
+
+/* Homepage Hook Section */
+/* Highlights section("coffee & photo" hook area)sitting on the page background */
+#highlights{
+    background:var(--bg);
+    padding-top:2rem; 
+    padding-bottom:2rem;
+}
+
+/* Two-column CSS Grid for the two highlight cards,with a gap between them */
+.highlights-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:3rem;
+}
+
+/* One highlight card:white rounded box with a soft shadow;on hover it lifts and the shadow deepens */
+.highlight-card{
+    background:var(--surface);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 8px 24px var(--shadow);
+    border:1px solid var(--border);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    display:flex;
+    flex-direction:column;
+}
+
+.highlight-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 40px var(--shadow-hover);
+}
+
+/* Card image:fixed height with cover crop;transition prepares it for the hover zoom */
+.highlight-card img{
+    width:100%;
+    height:320px; 
+    object-fit:cover;
+    transition:transform 0.5s ease;
+}
+
+/* On card hover,the image gently zooms in (transform:scale) */
+.highlight-card:hover img{
+    transform: scale(1.05);
+}
+
+.highlight-content{
+    padding:2.5rem;
+    text-align:center;
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.highlight-content h3{
+    font-size:1.8rem;
+    color:var(--nav-bg);
+    margin-bottom:1rem;
+    font-weight:700;
+}
+
+.highlight-content p{
+    color:var(--text-muted);
+    font-size:1.15rem;
+    margin-bottom:2rem;
+    flex-grow:1; 
+}
+
+/* Store Introduction(About Us) */
+/* About-Us section:solid surface background with large vertical padding */
+#about{
+    background:var(--surface);
+    padding-top:5rem;
+    padding-bottom:5rem;
+}
+
+/* Center the About text block and cap its reading width */
+.about-content{
+    max-width:1000px; 
+    margin:0 auto;
+    text-align:center; 
+}
+
+.about-content h3{
+    font-size:2.8rem; 
+    color:var(--nav-bg);
+    margin-bottom:2rem;
+    font-weight:700;
+    line-height:1.3;
+}
+
+.about-content p{
+    color:var(--text-muted);
+    font-size:1.4rem; 
+    line-height:1.8; 
+    margin-bottom:2rem;
+}
+
+/* A wrapping row of pill-shaped feature tags(Specialty Brews/Monthly Themes/Handmade Bakes) */
+.about-highlights{
+    display:flex;
+    gap:1.5rem;
+    margin-top:3rem;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.about-highlights span{
+    background:var(--bg);
+    color:var(--text);
+    padding:0.8rem 1.8rem; 
+    border-radius:30px;
+    font-weight:600;
+    font-size:1.2rem; 
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* Member Rewards */
+/* Rewards section:dark background spanning full width(max-width:none overrides the generic rule) */
+#rewards{
+    background:var(--nav-bg);
+    color: #FBF3E4;
+    max-width:none;
+    padding:5rem 2rem;
+}
+
+/* Responsive auto-fit grid:the membership cards wrap onto new rows automatically according to the
+  * available width-repeat(auto-fit,minmax())-so it adapts without extra media queries */
+.reward-cards{
+    max-width:1400px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px, 1fr));
+    gap:2rem;
+}
+
+/* A single membership card(a semi-transparent panel);hover brightens it and lifts it up */
+.reward-card{
+    background: rgba(251, 243, 228, 0.08);
+    padding:2.5rem;
+    border-radius:20px;
+    border:1px solid rgba(232, 184, 75, 0.3);
+    transition:all 0.3s ease;
+}
+
+.reward-card:hover{
+    background: rgba(251, 243, 228, 0.13);
+    transform:translateY(-4px);
+    border-color:var(--accent);
+}
+
+.reward-card h3{
+    color:var(--accent);
+    margin-bottom:1rem;
+    font-size:1.4rem;
+}
+.reward-card p{color: rgba(251, 243, 228, 0.85);}
+
+/* Contact Us */
+#contact{background:var(--bg);}
+/* Two-column grid:contact details on the left,the message form on the right */
+.contact-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+}
+.contact-info p{
+    margin-bottom:1.8rem;       
+    font-size:1.35rem;          
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--text);
+}
+
+/* Form */
+/* The form container:a white rounded card with padding,a border and a soft shadow */
+.order-form{
+    max-width:700px;
+    margin:0 auto;
+    background:var(--surface);
+    padding:2.5rem;
+    border-radius:20px;
+    box-shadow:0 8px 30px var(--shadow);
+    border:1px solid var(--border);
+}
+
+.form-item{margin-bottom:1.8rem;}
+
+label{
+    display:block;
+    margin-bottom:0.6rem;
+    font-weight:600;
+    color:var(--text);
+    font-size:1.2rem;           
+}
+
+/* All form controls:full width,comfortable padding and rounded corners;the focus ring is next */
+input,select,textarea{
+    width:100%;
+    padding:1.1rem 1.2rem;      
+    border:1.5px solid var(--border);
+    border-radius:12px;
+    font-size:1.15rem;          
+    background:var(--bg);
+    color:var(--text);
+    transition:all 0.3s ease;
+}
+
+/* Focus state for form controls:remove the browser default outline and show a soft green glow ring,
+  * so users can clearly tell which field is active */
+input:focus,select:focus,textarea:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(125, 155, 118, 0.15);
+    background: #fff;
+}
+
+/* Menu card */
+.menu-category{margin-bottom:4rem;}
+.menu-category h2,.menu-category h3{
+    color:var(--text);
+    font-size:1.8rem;
+    border-left:6px solid var(--primary);
+    padding-left:1rem;
+    margin-bottom:2rem;
+    font-weight:700;
+}
+/* Menu grid:auto-fill responsive columns so product cards flow into as many columns as fit */
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:2rem;
+}
+/* A single menu item card(image+text);hover lift effect, like the other cards */
+.menu-card{
+    background:var(--surface);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 6px 20px var(--shadow);
+    border:1px solid var(--border);
+    transition:transform 0.3s,box-shadow 0.3s;
+}
+.menu-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 16px 36px var(--shadow-hover);
+}
+.menu-card .img-box{
+    height:200px;
+    overflow:hidden;
+    background:var(--surface-alt);
+}
+.menu-card .img-box img{
+    width:100%;height:100%;
+    object-fit:cover;
+    transition:transform 0.5s ease;
+}
+.menu-card:hover .img-box img{transform:scale(1.08);}
+.menu-card .info{padding:1.5rem;}
+.menu-card h4{
+    font-size:1.2rem;
+    color:var(--text);
+    margin-bottom:0.5rem;
+    font-weight:700;
+}
+.price{
+    color:var(--accent);
+    font-weight:700;
+    font-size:1.15rem;
+    margin:0.8rem 0;
+}
+
+/* Photo wall */
+/* Responsive photo grid used for the photo-corner gallery */
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px, 1fr));
+    gap:1.5rem;
+}
+.photo-card{
+    height:auto;
+    background:var(--surface);
+    border-radius:16px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 4px 16px var(--shadow);
+    transition:transform 0.3s,box-shadow 0.3s;
+}
+.photo-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px var(--shadow-hover);
+}
+.photo-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+.photo-card .desc{
+    position:static;
+    background:transparent;
+    color:var(--text-muted);
+    padding:0.8rem 1rem 0.2rem;
+    font-size:0.9rem;
+}
+.photo-card .book-theme-btn{margin:0 1rem 1rem;}
+
+/* Booking and Map */
+#reserve {background:var(--bg);}
+.reserve-two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+}
+/* Container box that holds the embedded map(iframe) */
+.map-box{
+    background:var(--surface-alt);
+    min-height:350px;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 6px 20px var(--shadow);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.map-box iframe{
+    width:100%;height:350px;
+    border:0;display:block;
+}
+
+/* Footer */
+/* Footer bar at the bottom of the page with a gold top border */
+footer{
+    background:var(--nav-bg);
+    color: rgba(251, 243, 228, 0.8);
+    text-align:center;
+    padding:2.5rem 2rem;
+    font-size:0.9rem;
+    border-top:4px solid var(--accent);
+}
+
+/* Focus and Accessibility */
+/* Global keyboard-focus indicator(accessibility):a clear gold outline is shown ONLY when navigating
+  * with the keyboard,so mouse clicks are not cluttered with focus rings */
+:focus-visible{
+    outline:3px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+}
+
+/* Form submitted successfully */
+.form-success{
+    background: #EDF3EA;
+    border:1px solid var(--primary);
+    border-radius:12px;
+    padding:1.2rem 1.5rem;
+    margin-top:1.5rem;
+    color: #3A4A33;
+    box-shadow:0 4px 12px rgba(125, 155, 118, 0.15);
+}
+.form-success .btn-sm{
+    margin-top:10px;
+    background:var(--primary);
+    border-color:var(--primary);
+}
+.form-success .btn-sm:hover{
+    background:var(--primary-dark);
+    border-color:var(--primary-dark);
+}
+
+/* Custom pop-up */
+/* Modal overlay for the "Share your photo" popup:hidden by default,fixed to cover the whole screen
+  * (inset:0)with a blurred backdrop;the .active class below turns it into a centered flex box */
+#customizeOverlay{
+    display:none;
+    position:fixed;inset:0;
+    background: rgba(59, 42, 30, 0.65);
+    backdrop-filter:blur(3px);
+    z-index:1000;
+    justify-content:center;
+    align-items:center;
+}
+#customizeOverlay.active{display:flex;}
+
+/* The dialog box shown inside the modal overlay */
+.customize-dialog{
+    background:var(--bg);
+    border-radius:20px;
+    padding:2rem;
+    max-width:440px;
+    width:90%;
+    position:relative;
+    color:var(--text);
+    box-shadow:0 25px 50px rgba(0,0,0,0.25);
+    border:1px solid var(--border);
+}
+.customize-close{
+    position:absolute;
+    top:15px;right:20px;
+    background:none;border:none;
+    font-size:28px;cursor:pointer;
+    color:var(--text-muted);
+    transition:color 0.2s;
+}
+.customize-close:hover{color:var(--primary);}
+.opt-group{margin-bottom:12px;}
+.opt-group label{
+    color:var(--text);
+    font-weight:600;
+    font-size:14px;
+}
+.opt-group select{
+    background:var(--surface);
+    border:1.5px solid var(--border);
+    border-radius:8px;
+    padding:8px 10px;
+}
+.chk{display:flex;align-items:center;gap:6px;font-weight:400 !important;}
+.customize-total{
+    font-size:1.2rem;
+    font-weight:700;
+    margin:1.5rem 0;
+    color:var(--accent);
+}
+
+/* Two-Column Layout(Photo Corner) */
+/* Two-column layout used on the Photo Corner page */
+.photo-two{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:2.5rem;
+    margin-bottom:3rem;
+    align-items:start;
+}
+
+#upcoming{
+    display:flex;
+    flex-direction:column;
+    gap:2.5rem;
+}
+
+#upcoming .menu-category{
+    background:var(--surface);
+    padding:2rem;
+    border-radius:20px;
+    border:1px solid var(--border);
+    box-shadow:0 6px 20px var(--shadow);
+    transition:transform 0.3s,box-shadow 0.3s;
+    margin-bottom:0; 
+}
+
+#upcoming .menu-category:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px var(--shadow-hover);
+}
+
+#upcoming .menu-category h4{
+    font-size:1.4rem;
+    margin-bottom:0.8rem;
+    color:var(--text);
+}
+
+#upcoming .menu-category p{
+    font-size:1.1rem;
+    color:var(--text-muted);
+    margin-bottom:1.5rem;
+}
+
+/* Subtitle */
+/* Optional smaller subtitle line placed under a section title */
+.section-sub{
+    text-align:center;
+    color:var(--text-muted);
+    margin:-1rem auto 2rem;
+    max-width:640px;
+    font-size:1.05rem;
+}
+
+/* Responsive design */
+/* Responsive breakpoint: on screens 900px wide or narrower the multi-column grids collapse to a single
+  * column, the hamburger button appears,the nav turns into a vertical drop-down,and font sizes step down */
+@media(max-width:900px){
+    nav ul{
+        position:absolute;
+        top:100%;left:0;
+        width:100%;
+        background:var(--nav-bg);
+        flex-direction:column;
+        display:none;
+        z-index:5;
+        padding:1rem 0;
+        border-top:1px solid var(--primary);
+    }
+    nav ul.active{display:flex;}
+    .hamburger{display:block;}
+    .contact-wrap,.reserve-two,.photo-two,.highlights-grid{
+        grid-template-columns:1fr;
+        gap:2rem;
+    }
+    #home h1{font-size:2.6rem;}
+    #home p{font-size:1.1rem;}
+    .section-title{font-size:1.8rem;}
+    .featured-grid{grid-template-columns:1fr;}
+    .about-content h3{font-size:2rem;}
+    .about-content p{font-size:1.1rem;}
+    .about-highlights span{font-size:1rem;}
+    .highlight-card img{height:250px;}
+}

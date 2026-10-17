@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Responsive viewport-->
+    <title>Photo Corner | Funny Cafe Group27</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!--Skip link-->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header id="mainNav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Funny Cafe Logo">
+                Funny Cafe
+            </a>
+            <nav aria-label="Main navigation">
+                <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navList">☰</button>
+                <ul id="navList">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <a href="menu.html">Menu ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="menu.html#coffee">Coffee</a></li>
+                            <li><a href="menu.html#tea">Tea & Cold Drinks</a></li>
+                            <li><a href="menu.html#food">Food</a></li>
+                            <li><a href="menu.html#seasonal">Seasonal</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <!--Current page: Photo Corner-->
+                        <a href="photo.html" aria-current="page">Photo Corner ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="#thisMonth">This Month</a></li>
+                            <li><a href="#upcoming">Upcoming Themes</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="reserve.html">Visit & Reserve ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="reserve.html#location">Location & Hours</a></li>
+                            <li><a href="reserve.html#seat">Reserve a Seat</a></li>
+                            <li><a href="reserve.html#findUs">Find Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#rewards">Rewards</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <button id="backTopBtn">↑</button>
+    <!--Back-to-top button-->
+    <main id="main-content">
+        <!--Main content area-->
+        <section id="photoCorner">
+            <h1 class="section-title">Photo Corner</h1>
+            <!--Page main heading-->
+            <p class="section-sub">A new themed backdrop every month — come for the coffee, stay for the photo.</p>
+            <!--Two-column layout: side-by-side on desktop, single column on mobile-->
+            <div class="photo-two">
+                <!--This month anchor-->
+                <div id="thisMonth">
+                    <h3>This Month | Warm Autumn</h3>
+                    <!--Note: h3 skips h2, heading level jumps-->
+                    <div class="photo-card">
+                        <img src="images/autumn-photo-backdrop.jpg" alt="Autumn photo backdrop" loading="lazy" width="600" height="450">
+                        <div class="desc">Wooden autumn backdrop with warm lighting</div>
+                        <!--Theme booking button: JS reads data-theme and redirects-->
+                        <button class="btn btn-sm book-theme-btn" type="button" data-theme="Warm Autumn Theme">Book this theme</button>
+                    </div>
+                    <div class="photo-card">
+                        <img src="images/autumn-table-setting.png" alt="Autumn table setting" loading="lazy" width="600" height="450">
+                        <div class="desc">Latte & pastry flat lay</div>
+                        <button class="btn btn-sm book-theme-btn" type="button" data-theme="Warm Autumn Theme">Book this theme</button>
+                    </div>
+                </div>
+                <!--Upcoming themes anchor-->
+                <div id="upcoming">
+                    <h3>Upcoming Themes</h3>
+                    <div class="menu-category">
+                        <h4>Winter Christmas — Coming December</h4>
+                        <p>Cedar branches, warm fairy lights and a red-checkered tablecloth. Perfect for holiday photos.</p>
+                        <!--Button says Notify Me but JS redirects to booking, inconsistent-->
+                        <button class="btn btn-sm book-theme-btn" type="button" data-theme="Winter Christmas Theme">Notify Me</button>
+                    </div>
+                    <div class="menu-category">
+                        <h4>Spring Blossom — Coming March</h4>
+                        <p>Pastel pink backdrop with cherry blossom petals and a vintage window frame.</p>
+                        <button class="btn btn-sm book-theme-btn" type="button" data-theme="Spring Blossom Theme">Notify Me</button>
+                    </div>
+                </div>
+            </div>
+            <!--Gallery anchor-->
+            <div id="gallery">
+                <h3>Customer Gallery</h3>
+                <div class="photo-grid">
+                    <div class="photo-card">
+                        <img src="images/autumn_flatwhite.jpeg" alt="Customer enjoying a flat white" loading="lazy" width="400" height="400">
+                        <div class="desc">By @sarah_coffee — Oct 2026</div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="images/customer-photo2.jpg" alt="Two friends taking a selfie" loading="lazy" width="400" height="400">
+                        <div class="desc">By @mike_eats — Sep 2026</div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="images/iced_matcha_croissant.jpeg" alt="Overhead shot of iced matcha latte" loading="lazy" width="400" height="400">
+                        <div class="desc">By @latte_art_jen — Sep 2026</div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="images/four_customers_photo.jpeg" alt="Group of four customers smiling" loading="lazy" width="400" height="400">
+                        <div class="desc">By @group27team — Aug 2026</div>
+                    </div>
+                </div>
+                <p style="text-align:center;margin-top:16px;">
+                    <!--Share photo button: JS opens the modal-->
+                    <button class="btn btn-sm" type="button">Share your photo</button>
+                </p>
+            </div>
+            <!--Share photo modal, hidden by default-->
+            <div id="customizeOverlay">
+                <div class="customize-dialog">
+                    <button class="customize-close">&times;</button>
+                    <!--Close modal button-->
+                    <h3>Share your photo</h3>
+                    <div class="form-item" style="margin-top: 12px;">
+                        <label>Your Name / Instagram</label>
+                        <input type="text" id="shareName" placeholder="@yourname" autocomplete="off">
+                        <!--Sharer name input-->
+                    </div>
+                    <div class="form-item">
+                        <label>Photo Description</label>
+                        <textarea id="shareDesc" rows="3" placeholder="Describe your photo..."></textarea>
+                        <!--Photo description input-->
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 8px;">(Demo mode: no real upload)</p>
+                    <div style="text-align: right; margin-top: 16px;">
+                        <button class="btn btn-sm" id="shareSubmitBtn">Share</button>
+                        <!--Submit share button, validated by JS-->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 Funny Cafe | Group 27 Web Project | Last updated: 2026-10-1y</p>
+    </footer>
+    <script src="js/main.js"></script>
+    <!--External JS-->
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Responsive viewport: scales correctly on mobile-->
+    <title>Menu | Funny Cafe Group27</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!--External stylesheet-->
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header id="mainNav">
+        <!--Header nav; id used by back-to-top JS-->
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <!--Logo image+text-->
+                <img src="images/logo.png" alt="Funny Cafe Logo">
+                Funny Cafe
+            </a>
+            <nav aria-label="Main navigation">
+                <!--Main nav area, helps screen readers identify it-->
+                <button class="hamburger" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navList">☰</button>
+                <ul id="navList">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="has-dropdown">
+                        <!--Current page marker: Menu is active page-->
+                        <a href="menu.html" aria-current="page">Menu ▾</a>
+                        <ul class="dropdown">
+                            <!--Dropdown submenu-->
+                            <li><a href="#coffee">Coffee</a></li>
+                            <li><a href="#tea">Tea & Cold Drinks</a></li>
+                            <li><a href="#food">Food</a></li>
+                            <li><a href="#seasonal">Seasonal</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="photo.html">Photo Corner ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="photo.html#thisMonth">This Month</a></li>
+                            <li><a href="photo.html#upcoming">Upcoming Themes</a></li>
+                            <li><a href="photo.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="reserve.html">Visit & Reserve ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="reserve.html#location">Location & Hours</a></li>
+                            <li><a href="reserve.html#seat">Reserve a Seat</a></li>
+                            <li><a href="reserve.html#findUs">Find Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#rewards">Rewards</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <button id="backTopBtn">↑</button>
+    <!--Back-to-top button; visibility controlled by JS-->
+    <main id="main-content">
+        <section id="menu">
+            <h1 class="section-title">Our Menu</h1>
+            <!--Coffee category, id matches nav #coffee-->
+            <div class="menu-category" id="coffee">
+                <h2>Coffee</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <!--Menu image, lazy loade-->
+                        <div class="img-box"><img src="images/Americano.png" alt="Americano" loading="lazy"></div>
+                        <div class="info"><h4>Americano</h4><p>Classic dark roast, clean finish</p><div class="price">$3.80</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Cappuccino.png" alt="Cappuccino" loading="lazy"></div>
+                        <div class="info"><h4>Cappuccino</h4><p>Rich espresso with silky foam</p><div class="price">$4.50</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Latte.png" alt="Latte" loading="lazy"></div>
+                        <div class="info"><h4>Latte</h4><p>Smooth milk coffee, gentle and creamy</p><div class="price">$4.80</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Mocha.png" alt="Mocha" loading="lazy"></div>
+                        <div class="info"><h4>Mocha</h4><p>Chocolate meets espresso, topped with cream</p><div class="price">$5.20</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Cold Brew.png" alt="Cold Brew" loading="lazy"></div>
+                        <div class="info"><h4>Cold Brew</h4><p>Slow-steeped, smooth and refreshing</p><div class="price">$4.60</div></div>
+                    </div>
+                </div>
+            </div>
+            <!--Tea & cold drinks, id matches #tea-->
+            <div class="menu-category" id="tea">
+                <h2>Tea & Cold Drinks</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Milk Tea.png" alt="Classic milk tea" loading="lazy"></div>
+                        <div class="info"><h4>Milk Tea</h4><p>Classic black tea with fresh milk</p><div class="price">$3.50</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Matcha Latte.png" alt="Matcha latte" loading="lazy"></div>
+                        <div class="info"><h4>Matcha Latte</h4><p>Japanese matcha with steamed milk</p><div class="price">$4.80</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Fruit Smoothie.png" alt="Fresh fruit smoothie" loading="lazy"></div>
+                        <div class="info"><h4>Fruit Smoothie</h4><p>Seasonal fruit blended with yogurt</p><div class="price">$5.00</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/lemon-sparkling-tea.jpg" alt="Sparkling lemon soda" loading="lazy"></div>
+                        <div class="info"><h4>Lemon Soda</h4><p>Sparkling lemonade with fresh mint</p><div class="price">$3.80</div></div>
+                    </div>
+                </div>
+            </div>
+            <!--Food, id matches #food-->
+            <div class="menu-category" id="food">
+                <h2>Food</h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Club Sandwich.png" alt="Club sandwich" loading="lazy"></div>
+                        <div class="info"><h4>Club Sandwich</h4><p>Triple-decker with chicken, egg & veg</p><div class="price">$6.80</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Tiramisu.png" alt="Classic Italian tiramisu" loading="lazy"></div>
+                        <div class="info"><h4>Tiramisu</h4><p>Mascarpone, espresso-soaked sponge & cocoa</p><div class="price">$4.20</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Caesar Salad.png" alt="Caesar salad" loading="lazy"></div>
+                        <div class="info"><h4>Caesar Salad</h4><p>Romaine, croutons, parmesan & house dressing</p><div class="price">$6.20</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Beef Baguette.png" alt="Beef baguette sandwich" loading="lazy"></div>
+                        <div class="info"><h4>Beef Baguette</h4><p>Slow-braised beef, cheese & pickles in a baguette</p><div class="price">$7.00</div></div>
+                    </div>
+                </div>
+            </div>
+            <!--Seasonal, id matches #seasonal-->
+            <div class="menu-category" id="seasonal">
+                <h2>Seasonal <span class="tag">Autumn · Oct–Nov 2026</span></h2>
+                <div class="menu-grid">
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Pumpkin Spice Latte.jpg" alt="Pumpkin Spice Latte" loading="lazy"></div>
+                        <div class="info"><h4>Pumpkin Spice Latte</h4><p>Espresso, pumpkin spice, steamed milk & cinnamon foam</p><div class="price">$5.20</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Caramel Apple Cold Brew.jpg" alt="Caramel Apple Cold Brew" loading="lazy"></div>
+                        <div class="info"><h4>Caramel Apple Cold Brew</h4><p>Cold brew, apple syrup & caramel drizzle</p><div class="price">$4.80</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Cinnamon Black Tea Latte.jpg" alt="Cinnamon Black Tea Latte" loading="lazy"></div>
+                        <div class="info"><h4>Cinnamon Black Tea Latte</h4><p>Warm black tea latte with cinnamon & vanilla</p><div class="price">$4.60</div></div>
+                    </div>
+                    <div class="menu-card">
+                        <div class="img-box"><img src="images/Chestnut Mont Blanc Waffle.jpg" alt="Chestnut Mont Blanc waffle" loading="lazy"></div>
+                        <div class="info"><h4>Chestnut Mont Blanc Waffle</h4><p>Belgian waffle, chestnut cream & whipped cream</p><div class="price">$6.50</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!--Copyright and last updated date-->
+        <p>© 2026 Funny Cafe | Group 27 Web Project | Last updated: 2026-10-17</p>
+    </footer>
+    <!--External JS: handles nav, forms, back-to-top, etc.-->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title displayed on the browser tab -->
+    <title>Visit & Reserve | Funny Cafe Group27</title>
+    <!-- External stylesheet:put CSS in a separate file to achieve 'separation of structure (HTML) and style (CSS)',making it easier to maintain and reuse -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header id="mainNav">
+        <!-- Navigation container:use flex layout to spread the logo and menu apart -->
+        <div class="nav-container">
+            <!-- logo:it's both an image and a link to the homepage,clicking the logo returns to index.html -->
+            <a href="index.html" class="logo">
+                <!-- alt is the alternative text displayed when an image fails to load and is also read by screen readers,for accessibility requirements -->
+                <img src="images/logo.png" alt="Funny Cafe Logo">
+                Funny Cafe
+            </a>
+            <nav aria-label="Main navigation">
+                <button class="hamburger" id="menuBtn" aria-label="Open the menu" aria-expanded="false" aria-controls="navList">☰</button>
+                <ul id="navList">
+                    <li><a href="index.html">Home</a></li>
+                    <!-- the class 'has-dropdown' marks 'this item has a dropdown submenu',uses CSS/JS to show on hover -->
+                    <li class="has-dropdown">
+                        <a href="menu.html">Menu ▾</a>
+                        <!-- A nested ul.dropdown is a submenu -->
+                        <ul class="dropdown">
+                            <!-- Writing 'page.html anchor_id':first jump to menu.html,then automatically scroll to the position with id="coffee" on that page -->
+                            <li><a href="menu.html#coffee">Coffee</a></li>
+                            <li><a href="menu.html#tea">Tea & Cold Drinks</a></li>
+                            <li><a href="menu.html#food">Food</a></li>
+                            <li><a href="menu.html#seasonal">Seasonal</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown">
+                        <a href="photo.html">Photo Corner ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="photo.html#thisMonth">This Month</a></li>
+                            <li><a href="photo.html#upcoming">Upcoming Themes</a></li>
+                            <li><a href="photo.html#gallery">Gallery</a></li>
+                        </ul>
+                    </li>
+                    <!-- The aria-current="page" indicates "this is the current page,"so CSS can highlight the current menu item accordingly -->
+                    <li class="has-dropdown">
+                        <a href="reserve.html" aria-current="page">Visit & Reserve ▾</a>
+                        <ul class="dropdown">
+                            <li><a href="#location">Location & Hours</a></li>
+                            <li><a href="#seat">Reserve a Seat</a></li>
+                            <li><a href="#findUs">Find Us</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#rewards">Rewards</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <button id="backTopBtn">↑</button>
+    <main id="main-content">
+        <!-- Reservation section,section represents a content area -->
+        <section id="reserve">
+            <h1 class="section-title">Visit & Reserve</h1>
+            <div class="reserve-two">
+                <!-- Left column:address and business information+reservation form -->
+                <div>
+                    <!-- id="location" corresponds to the location anchor in the navigation,clicking it will take you here -->
+                    <div id="location">
+                        <h3>Location & Hours</h3>
+                        <p>📞 Address: Block A12, Creative District</p>
+                        <p>🕒 Opening Hours: Mon-Fri 9:00 - 22:00; Weekend 8:30 - 23:00</p>
+                    </div>
+                    <br>
+                    <!-- id="seat" corresponds to the seat anchor in the navigation -->
+                    <div id="seat">
+                        <h3>Reserve a Seat</h3>
+                        <form class="order-form" id="reserveForm" data-demo-form>
+                            <div class="form-item">
+                                <label for="seatType">Seat Type</label>
+                                <!-- select dropdown box,name is the field name when submitting,and the option inside are the available choices -->
+                                <select id="seatType" name="seatType">
+                                    <option>Regular Seat</option>
+                                    <option>Photo Corner Seat</option>
+                                </select>
+                            </div>
+                            <div class="form-item">
+                                <label for="reserveDate">Reservation Date</label>
+                                <!-- type="date" makes the browser automatically pop up a date picker;required means it's mandatory,you can't submit without filling it -->
+                                <input id="reserveDate" name="reserveDate" type="date" required>
+                            </div>
+                            <div class="form-item">
+                                <label for="reserveHour">Reservation Time</label>
+                                <!-- type="time" pop-up time picker -->
+                                <input id="reserveHour" name="reserveHour" type="time" required>
+                            </div>
+                            <div class="form-item">
+                                <label for="guests">Number of Guests</label>
+                                <!-- type="number" number input field;min/max restricts range 1~8,values out of range will fail validation -->
+                                <input id="guests" name="guests" type="number" min="1" max="8" required>
+                            </div>
+                            <div class="form-item">
+                                <label for="reservePhone">Contact Number</label>
+                                <!-- type="tel" phone input field,a numeric keyboard will pop up on mobile -->
+                                <input id="reservePhone" name="reservePhone" type="tel" required>
+                            </div>
+                            <!-- A button with type="submit" will trigger the entire form to submit -->
+                            <button type="submit" class="btn">Submit Reservation</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- Right column:Find store map.id="findUs" corresponds to the #findUs anchor in the navigation -->
+                <div id="findUs">
+                    <h3>Find Us</h3>
+                    <div class="map-box" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <img src="images/map.jpg" alt="Funny Cafe Location Map" style="width: 100%; height: auto; border-radius: 20px; box-shadow: 0 6px 20px var(--shadow); display: block;">
+                    </div>
+                    <p style="margin-top: 1rem;">📍 Metro: Creative Station Exit B, 5 mins walk</p>
+                    <p>🚌 Bus: Creative District Stop</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 Funny Cafe | Group 27 Web Project | Last updated: 2026-10-17</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>
